@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class ContactController extends Controller
 {
     protected function index()
     {
-        return view('home.index');
+        return view('contact.index');
     }
 }
