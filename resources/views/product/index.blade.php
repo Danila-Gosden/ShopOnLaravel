@@ -1,25 +1,6 @@
 @extends('layouts.main')
 @section('title', 'ProductName')
 @section('content')
-<!-- Home -->
-
-	<div class="home">
-		<div class="home_container">
-			<div class="home_background" style="background-image:url(../../../public/images/categories.jpg)"></div>
-			<div class="home_content_container">
-				<div class="container">
-					<div class="row">
-						<div class="col">
-							<div class="home_content">
-								<div class="home_title">Smart Phones<span>.</span></div>
-								<div class="home_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viverra velit venenatis fermentum luctus.</p></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Product Details -->
 
@@ -30,12 +11,12 @@
 				<!-- Product Image -->
 				<div class="col-lg-6">
 					<div class="details_image">
-						<div class="details_image_large"><img src="../../../public/images/details_1.jpg" alt=""><div class="product_extra product_new"><a href="categories.html">New</a></div></div>
+						<div class="details_image_large"><img src="images/details_1.jpg" alt=""><div class="product_extra product_new"><a href="categories.html">New</a></div></div>
 						<div class="details_image_thumbnails d-flex flex-row align-items-start justify-content-between">
-							<div class="details_image_thumbnail active" data-image="images/details_1.jpg"><img src="../../../public/images/details_1.jpg" alt=""></div>
-							<div class="details_image_thumbnail" data-image="images/details_2.jpg"><img src="../../../public/images/details_2.jpg" alt=""></div>
-							<div class="details_image_thumbnail" data-image="images/details_3.jpg"><img src="../../../public/images/details_3.jpg" alt=""></div>
-							<div class="details_image_thumbnail" data-image="images/details_4.jpg"><img src="../../../public/images/details_4.jpg" alt=""></div>
+							<div class="details_image_thumbnail active" data-image="images/details_1.jpg"><img src="images/details_1.jpg" alt=""></div>
+							<div class="details_image_thumbnail" data-image="images/details_2.jpg"><img src="images/details_2.jpg" alt=""></div>
+							<div class="details_image_thumbnail" data-image="images/details_3.jpg"><img src="images/details_3.jpg" alt=""></div>
+							<div class="details_image_thumbnail" data-image="images/details_4.jpg"><img src="images/details_4.jpg" alt=""></div>
 						</div>
 					</div>
 				</div>
@@ -113,7 +94,7 @@
 
 						<!-- Product -->
 						<div class="product">
-							<div class="product_image"><img src="../../../public/images/product_1.jpg" alt=""></div>
+							<div class="product_image"><img src="images/product_1.jpg" alt=""></div>
 							<div class="product_extra product_new"><a href="categories.html">New</a></div>
 							<div class="product_content">
 								<div class="product_title"><a href="product.html">Smart Phone</a></div>
@@ -123,7 +104,7 @@
 
 						<!-- Product -->
 						<div class="product">
-							<div class="product_image"><img src="../../../public/images/product_2.jpg" alt=""></div>
+							<div class="product_image"><img src="images/product_2.jpg" alt=""></div>
 							<div class="product_extra product_sale"><a href="categories.html">Sale</a></div>
 							<div class="product_content">
 								<div class="product_title"><a href="product.html">Smart Phone</a></div>
@@ -133,7 +114,7 @@
 
 						<!-- Product -->
 						<div class="product">
-							<div class="product_image"><img src="../../../public/images/product_3.jpg" alt=""></div>
+							<div class="product_image"><img src="images/product_3.jpg" alt=""></div>
 							<div class="product_content">
 								<div class="product_title"><a href="product.html">Smart Phone</a></div>
 								<div class="product_price">$710</div>
@@ -142,7 +123,7 @@
 
 						<!-- Product -->
 						<div class="product">
-							<div class="product_image"><img src="../../../public/images/product_4.jpg" alt=""></div>
+							<div class="product_image"><img src="images/product_4.jpg" alt=""></div>
 							<div class="product_content">
 								<div class="product_title"><a href="product.html">Smart Phone</a></div>
 								<div class="product_price">$330</div>

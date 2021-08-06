@@ -1,30 +1,6 @@
 @extends('layouts.main')
 @section('title', 'Checkout')
 @section('content')
-    <!-- Home -->
-
-    <div class="home">
-        <div class="home_container">
-            <div class="home_background" style="background-image:url(../../../public/images/cart.jpg)"></div>
-            <div class="home_content_container">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="home_content">
-                                <div class="breadcrumbs">
-                                    <ul>
-                                        <li><a href="index.html">Home</a></li>
-                                        <li><a href="cart.html">Shopping Cart</a></li>
-                                        <li>Checkout</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Checkout -->
 
@@ -120,20 +96,20 @@
                                     <div>
                                         <input type="checkbox" id="checkbox_terms" name="regular_checkbox"
                                                class="regular_checkbox" checked="checked">
-                                        <label for="checkbox_terms"><img src="../../../public/images/check.png" alt=""></label>
+                                        <label for="checkbox_terms"><img src="images/check.png" alt=""></label>
                                         <span class="checkbox_title">Terms and conditions</span>
                                     </div>
                                     <div>
                                         <input type="checkbox" id="checkbox_account" name="regular_checkbox"
                                                class="regular_checkbox">
-                                        <label for="checkbox_account"><img src="../../../public/images/check.png"
+                                        <label for="checkbox_account"><img src="images/check.png"
                                                                            alt=""></label>
                                         <span class="checkbox_title">Create an account</span>
                                     </div>
                                     <div>
                                         <input type="checkbox" id="checkbox_newsletter" name="regular_checkbox"
                                                class="regular_checkbox">
-                                        <label for="checkbox_newsletter"><img src="../../../public/images/check.png"
+                                        <label for="checkbox_newsletter"><img src="images/check.png"
                                                                               alt=""></label>
                                         <span class="checkbox_title">Subscribe to our newsletter</span>
                                     </div>
