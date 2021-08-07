@@ -1,5 +1,11 @@
 <?php
 
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,10 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\HomeController@index');
-Route::get('/productId', 'App\Http\Controllers\ProductController@index');
-Route::get('/cart', 'App\Http\Controllers\CartController@index');
-Route::get('/categories', 'App\Http\Controllers\CategoriesController@index');
-Route::get('/checkout', 'App\Http\Controllers\CheckoutController@index');
-Route::get('/contact', 'App\Http\Controllers\ContactController@index');
-
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/{categoryName}/{productId}', [ProductController::class, 'index'])->name('productPage');
+Route::get('/cart', [CartController::class, 'index']);
+Route::get('/{categoryName}', [CategoryController::class, 'index']);
+Route::get('/checkout', [CheckoutController::class, 'index']);
+Route::get('/contact', [ContactController::class, 'index']);

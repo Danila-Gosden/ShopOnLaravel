@@ -1,7 +1,24 @@
 @extends('layouts.main')
 @section('title', 'Categories')
 @section('content')
-
+    <!-- Home -->
+    <div class="home">
+        <div class="home_container">
+            <div class="home_background" style="background-image:url('')"></div>
+            <div class="home_content_container">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="home_content">
+                                <div class="home_title"><span>.</span></div>
+                                <div class="home_text"><p></p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Products -->
 
     <div class="products">
