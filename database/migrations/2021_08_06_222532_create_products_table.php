@@ -19,8 +19,7 @@ class CreateProductsTable extends Migration
             $table->text('product_description');
             $table->double('current_price');
             $table->double('old_price')->nullable();
-            $table->boolean('in_stock');
-
+            $table->bigInteger('in_stock');
             $table->timestamps();
         });
     }
