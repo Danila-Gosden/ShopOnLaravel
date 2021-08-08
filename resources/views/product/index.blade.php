@@ -11,14 +11,7 @@
 
 @section('content')
     <!-- Home -->
-    @php
-        if (count($product->images) > 0){
-            $image = $product->images[0]['img'];
-        }
-       else{
-            $image = 'no_image.png';
-        }
-    @endphp
+
 
     <div class="home">
         <div class="home_container">
@@ -50,14 +43,15 @@
                             <div class="product_extra product_new"><a href="categories.html">New</a></div>
                         </div>
                         <div class="details_image_thumbnails d-flex flex-row align-items-start justify-content-between">
-                            <div class="details_image_thumbnail active" data-image="/images/{{$image}}"><img
-                                    src="/images/{{$image}}" alt=""></div>
-                            <div class="details_image_thumbnail" data-image="/images/{{$image}}"><img
-                                    src="/images/{{$image}}" alt=""></div>
-                            <div class="details_image_thumbnail" data-image="/images/{{$image}}"><img
-                                    src="/images/{{$image}}" alt=""></div>
-                            <div class="details_image_thumbnail" data-image="/images/{{$image}}"><img
-                                    src="/images/{{$image}}" alt=""></div>
+                            @if(!count($product->images))
+                                <div class="details_image_thumbnail active" data-image="/images/no_image.png"><img
+                                        src="/images/no_image.png" alt=""></div>
+                            @else
+                                @foreach($product->images as $images)
+                                <div class="details_image_thumbnail active" data-image="/images/{{$images['img']}}"><img
+                                        src="/images/{{$images['img']}}" alt=""></div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -66,10 +60,14 @@
                 <div class="col-lg-6">
                     <div class="details_content">
                         <div class="details_name">{{$product->product_name}}</div>
-                        <div class="details_discount">${{$product->old_price}}</div>
-                        <div class="details_price">${{$product->current_price}}</div>
+                        @if($product->old_price < $product->current_price && $product->old_price != null)
+                            <div class="details_discount">${{$product->old_price}}</div>
+                            <div class="details_price">${{$product->current_price}}</div>
+                        @else
+                            <div class="details_price">${{$product->current_price}}</div>
+                    @endif
 
-                        <!-- In Stock -->
+                    <!-- In Stock -->
                         <div class="in_stock_container">
                             <div class="availability">Availability:</div>
                             <span>{{$inStock}}</span>
@@ -142,34 +140,6 @@
                             <div class="product_content">
                                 <div class="product_title"><a href="product.html">Smart Phone</a></div>
                                 <div class="product_price">$670</div>
-                            </div>
-                        </div>
-
-                        <!-- Product -->
-                        <div class="product">
-                            <div class="product_image"><img src="images/product_2.jpg" alt=""></div>
-                            <div class="product_extra product_sale"><a href="categories.html">Sale</a></div>
-                            <div class="product_content">
-                                <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                                <div class="product_price">$520</div>
-                            </div>
-                        </div>
-
-                        <!-- Product -->
-                        <div class="product">
-                            <div class="product_image"><img src="images/product_3.jpg" alt=""></div>
-                            <div class="product_content">
-                                <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                                <div class="product_price">$710</div>
-                            </div>
-                        </div>
-
-                        <!-- Product -->
-                        <div class="product">
-                            <div class="product_image"><img src="images/product_4.jpg" alt=""></div>
-                            <div class="product_content">
-                                <div class="product_title"><a href="product.html">Smart Phone</a></div>
-                                <div class="product_price">$330</div>
                             </div>
                         </div>
 

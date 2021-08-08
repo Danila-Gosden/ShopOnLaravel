@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->double('current_price');
             $table->double('old_price')->nullable();
             $table->bigInteger('in_stock');
+            $table->string('category_name')->nullable();
             $table->timestamps();
         });
     }

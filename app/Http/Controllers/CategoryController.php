@@ -9,7 +9,7 @@ class CategoryController extends Controller
 {
     protected function index($categoryName)
     {
-        $product = Product::where('categoryName', $categoryName)->all();
-        return view('product.index', ['product' => $product]);
+        $products = Product::where('category_name', $categoryName)->get();
+        return view('categories.index', ['products' => $products]);
     }
 }

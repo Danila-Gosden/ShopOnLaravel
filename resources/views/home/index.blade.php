@@ -162,7 +162,12 @@
                                     <div class="product_title"><a
                                             href="{{route('productPage',['categoryName',$product->id])}}">{{$product->product_name}}</a>
                                     </div>
-                                    <div class="product_price">${{$product->current_price}}</div>
+                                    @if($product->old_price < $product->current_price && $product->old_price != null)
+                                        <div style="text-decoration: line-through">${{$product->old_price}}</div>
+                                        <div class="product_price">${{$product->current_price}}</div>
+                                    @else
+                                        <div class="product_price">${{$product->current_price}}</div>
+                                    @endif
                                 </div>
                             </div>
                         @endforeach
