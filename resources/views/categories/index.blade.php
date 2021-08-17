@@ -1,7 +1,10 @@
 @extends('layouts.main')
 @section('title', 'Categories')
 @section('content')
-
+@section('custom_css')
+    <link rel="stylesheet" type="text/css" href="/styles/categories.css">
+    <link rel="stylesheet" type="text/css" href="/styles/categories_responsive.css">
+@endsection
     <!-- Products -->
 
     <div class="products">
@@ -12,7 +15,7 @@
                     <!-- Product Sorting -->
                     <div
                         class="sorting_bar d-flex flex-md-row flex-column align-items-md-center justify-content-md-start">
-                        <div class="results">Showing <span>12</span> results</div>
+                        <div class="results">Showing <span>{{$products->count()}}</span> results</div>
                         <div class="sorting_container ml-md-auto">
                             <div class="sorting">
                                 <ul class="item_sorting">
@@ -20,13 +23,16 @@
                                         <span class="sorting_text">Sort by</span>
                                         <i class="fa fa-chevron-down" aria-hidden="true"></i>
                                         <ul>
-                                            <li class="product_sorting_btn"
-                                                data-isotope-option='{ "sortBy": "original-order" }'>
+                                            <li class="product_sorting_btn">
                                                 <span>Default</span></li>
-                                            <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "price" }'>
-                                                <span>Price</span></li>
-                                            <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "stars" }'>
-                                                <span>Name</span></li>
+                                            <li class="product_sorting_btn" data-order="price-hight-low">
+                                                <span>Price: Hight To Low</span></li>
+                                            <li class="product_sorting_btn" data-order="price-low-hight">
+                                                <span>Price: Low to Hight</span></li>
+                                            <li class="product_sorting_btn" data-order="name-a-z">
+                                                <span>Name: A - Z</span></li>
+                                            <li class="product_sorting_btn" data-order="name-z-a">
+                                                <span>Name: Z - A</span></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -156,3 +162,29 @@
         </div>
     </div>
 @endsection
+@section('custom_js')
+    <script>
+        $(document).ready(function () {
+            $('.product_sorting_btn').click(function () {
+                let orderBy = $(this).data('order');
+                $.ajax(
+                    {
+                        url: '{{route('categoryPage', $product->category_name)}}',
+                        type: 'GET',
+                        data: {
+                            'orderBy': orderBy
+                        },
+                        header: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function (data) {
+                            $('.product_grid').html(data);
+                        }
+                    }
+                )
+            });
+        });
+    </script>
+@endsection
+
+

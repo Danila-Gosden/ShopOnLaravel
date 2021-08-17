@@ -22,6 +22,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/{categoryName}/{productId}', [ProductController::class, 'index'])->name('productPage');
 Route::get('/cart', [CartController::class, 'index']);
-Route::get('/{categoryName}', [CategoryController::class, 'index']);
+Route::get('/{categoryName}', [CategoryController::class, 'index'])->name('categoryPage');
 Route::get('/checkout', [CheckoutController::class, 'index']);
 Route::get('/contact', [ContactController::class, 'index']);
