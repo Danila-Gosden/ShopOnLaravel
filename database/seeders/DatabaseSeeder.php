@@ -2,19 +2,20 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Seed the application's database.
      *
      * @return void
      */
     public function run()
     {
+        $this->call(UsersSeeder::class);
         $this->call(CategoriesSeeder::class);
-        $this->call(ProductImagesSeeder::class);
         $this->call(ProductsSeeder::class);
     }
 }

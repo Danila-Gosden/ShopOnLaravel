@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
-
 
 class CategoriesSeeder extends Seeder
 {
@@ -15,10 +14,6 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 30; $i++) {
-            DB::table('categories')->insert([
-                'category_name' => 'Category_' . $i
-            ]);
-        }
+        Category::factory()->count(10)->create();
     }
 }

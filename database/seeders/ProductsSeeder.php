@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Support\Str;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class ProductsSeeder extends Seeder
 {
@@ -15,21 +14,6 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 1; $i <= 30; $i++) {
-            if ($i % 2 == 0) {
-                $number = $i + 1;
-            }
-            else{
-                $number = $i;
-            }
-            DB::table('products')->insert([
-                'product_name' => Str::random(10),
-                'product_description' => Str::random(500),
-                'current_price' => rand(1, 999),
-                'old_price' => rand(1, 999),
-                'in_stock' => rand(0, 1),
-                'category_name' => 'Category_' . $number
-            ]);
-        }
+        Product::factory()->count(100)->create();
     }
 }
