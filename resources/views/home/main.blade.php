@@ -45,12 +45,12 @@
                                 <h3>{{$product->name}}</h3>
                                 <p>{{$product->price}} ₽</p>
                                 <p>
-                                <form action="<?=Route('home')?>/basket/add/1" method="POST">
+                                <form action="<?=Route('cart-add', [$product->id])?>" method="POST">
                                     <button type="submit" class="btn btn-primary" role="button">В корзину</button>
                                     <a href="<?=Route('product', ['product_id' => $product->id, 'category_alias' => $product->category->alias])?>"
                                        class="btn btn-default"
                                        role="button">Подробнее</a>
-                                    <input type="hidden" name="_token" value="LyX7wJ14Rat6zAWUa00JNx2Gpd7SkuZMOhEb9USm">
+                                @csrf
                                 </form>
                                 </p>
                             </div>

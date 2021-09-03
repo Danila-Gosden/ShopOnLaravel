@@ -24,7 +24,7 @@
                 <li class="active"><a href="<?=Route('home')?>">Все товары</a></li>
                 <li ><a href="<?=Route('home')?>/categories">Категории</a>
                 </li>
-                <li ><a href="<?=Route('home')?>/basket">В корзину</a></li>
+                <li ><a href="<?=Route('cart')?>">В корзину</a></li>
                 <li><a href="<?=Route('home')?>/locale/en">en</a></li>
 
                 <li class="dropdown">

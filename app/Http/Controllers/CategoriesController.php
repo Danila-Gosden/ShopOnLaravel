@@ -15,6 +15,6 @@ class CategoriesController extends Controller
     }
     public function category($category_alias){
         $category = Category::where('alias', $category_alias)->firstOrFail();
-        return view('categories.single-category', ['category' => $category]);
+        return view('categories.single-category', compact('category'));
     }
 }
