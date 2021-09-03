@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function index()
     {
         $order_id = session('order_id');
@@ -18,6 +22,10 @@ class CartController extends Controller
         return view('cart.main', compact('order'));
     }
 
+    /**
+     * @param $product_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function addProduct($product_id)
     {
         $order_id = session('order_id');
@@ -34,9 +42,14 @@ class CartController extends Controller
         } else {
             $order->products()->attach($product_id);
         }
+        session()->flash('added',  'Продукт Добавлен!');
         return redirect()->route('cart');
     }
 
+    /**
+     * @param $product_id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function removeProduct($product_id)
     {
         $order_id = session('order_id');
@@ -54,11 +67,14 @@ class CartController extends Controller
                 $pivotRow->count--;
                 $pivotRow->update();
             }
+            session()->flash('removed',  'Продукт Удалён!');
         }
         return redirect()->route('cart');
     }
 
-
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|void
+     */
     public function cartConfirm()
     {
         $order_id = session('order_id');
@@ -70,9 +86,27 @@ class CartController extends Controller
         }
     }
 
-    public function cartFinish()
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function cartFinish(Request $request)
     {
 
+        $order_id = session('order_id');
+        if (is_null($order_id)) {
+            return redirect()->route('home');
+        } else {
+            $order = Order::find($order_id);
+            $success = $order->saveOrder($request->name, $request->phone);
+            if ($success){
+                session()->flash('success',  'Ваш заказ в обработке!');
+            }
+            else{
+                session()->flash('wrong',  'Произошла ошибка в оформлении заказа!');
+            }
+            return redirect()->route('home');
+        }
     }
 
 

@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminPanelController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +18,17 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes([
+    'reset' => false,
+    'confirm' => false,
+    'verify' => false
+]);
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => 'auth'], function (){
+    Route::get('/admin-panel', [AdminPanelController::class, 'index'])->name('admin-panel');
+});
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
@@ -34,6 +45,9 @@ Route::get('/{category_alias}/{product_id}', [ProductController::class, 'index']
 Route::post('/cart/add/{product_id}', [CartController::class, 'addProduct'])->name('cart-add');
 
 Route::post('/cart/remove/{product_id}', [CartController::class, 'removeProduct'])->name('cart-remove');
+
+
+
 
 
 

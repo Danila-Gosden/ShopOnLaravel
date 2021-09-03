@@ -6,6 +6,12 @@
     <h1></h1>
     <p></p>
     <div class="panel">
+        @if(session()->has('added'))
+            <p class="alert alert-success">{{ session()->get('added') }}</p>
+        @endif
+        @if(session()->has('removed'))
+            <p class="alert alert-warning">{{ session()->get('removed') }}</p>
+        @endif
         <table class="table table-striped">
             <thead>
             <tr>
