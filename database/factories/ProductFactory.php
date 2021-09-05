@@ -26,7 +26,6 @@ class ProductFactory extends Factory
             'name' => $this->faker->lastName(),
             'price'=> rand(1505,25687),
             'code' => Str::random(10),
-            'img' => 'none_image.png',
             'category_id' => rand(1,10),
             'description' => $this->faker->realText(500),
         ];

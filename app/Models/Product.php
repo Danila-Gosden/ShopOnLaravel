@@ -9,6 +9,13 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'category_id',
+        'image_path'
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
@@ -21,6 +28,5 @@ class Product extends Model
         } else {
             return $this->price * $this->pivot->count;
         }
-
     }
 }

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Order extends Model
 {
@@ -35,5 +36,15 @@ class Order extends Model
         } else {
             return false;
         }
+    }
+    public function saveUserId(){
+        if(!is_null(Auth::user())) {
+            $user = Auth::user();
+            $this->user_id = $user->id;
+            $this->save();
+        }
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -15,6 +16,7 @@ class CartController extends Controller
         $order_id = session('order_id');
         if (is_null($order_id)) {
             $order = Order::create();
+            $order->saveUserId();
             session(['order_id' => $order->id]);
         } else {
             $order = Order::findOrFail($order_id);
@@ -31,6 +33,7 @@ class CartController extends Controller
         $order_id = session('order_id');
         if (is_null($order_id)) {
             $order = Order::create();
+            $order->saveUserId();
             session(['order_id' => $order->id]);
         } else {
             $order = Order::find($order_id);
@@ -55,6 +58,7 @@ class CartController extends Controller
         $order_id = session('order_id');
         if (is_null($order_id)) {
             $order = Order::create();
+            $order->saveUserId();
             session(['order_id' => $order->id]);
         } else {
             $order = Order::find($order_id);
@@ -100,10 +104,10 @@ class CartController extends Controller
             $order = Order::find($order_id);
             $success = $order->saveOrder($request->name, $request->phone);
             if ($success){
-                session()->flash('success',  'Ваш заказ в обработке!');
+                session()->flash('message',  'Ваш заказ в обработке!');
             }
             else{
-                session()->flash('wrong',  'Произошла ошибка в оформлении заказа!');
+                session()->flash('message',  'Произошла ошибка в оформлении заказа!');
             }
             return redirect()->route('home');
         }

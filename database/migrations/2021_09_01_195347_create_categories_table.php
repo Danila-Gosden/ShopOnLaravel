@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('alias');
             $table->text('description')->nullable();
+            $table->string('image_path')->nullable()->default('/images/none_image.png');
             $table->timestamps();
         });
     }

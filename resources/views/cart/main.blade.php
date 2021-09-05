@@ -25,7 +25,7 @@
                 <tr>
                     <td>
                         <a href="<?=Route('product', [$product->category->alias,$product->id])?>">
-                            <img height="56px" src="">
+                            <img height="56px" src="@if($product->image_path != '/images/none_image.png'){{ Storage::url($product->image_path) }}@else {{$product->image_path}} @endif">
                             {{$product->name}}
                         </a>
                     </td>

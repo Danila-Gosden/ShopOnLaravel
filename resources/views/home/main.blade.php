@@ -37,10 +37,8 @@
                     <div class="col-sm-6 col-md-4">
                         <div class="thumbnail">
                             <div class="labels">
-
-
                             </div>
-                            <img src="<?=Route('home')?>/storage/products/iphone_x.jpg" alt="iPhone X 64GB">
+                            <img src="@if($product->image_path != '/images/none_image.png'){{ Storage::url($product->image_path) }}@else {{$product->image_path}} @endif" alt="{{$product->name}}">
                             <div class="caption">
                                 <h3>{{$product->name}}</h3>
                                 <p>{{$product->price}} ₽</p>
@@ -50,7 +48,7 @@
                                     <a href="<?=Route('product', ['product_id' => $product->id, 'category_alias' => $product->category->alias])?>"
                                        class="btn btn-default"
                                        role="button">Подробнее</a>
-                                @csrf
+                                    @csrf
                                 </form>
                                 </p>
                             </div>

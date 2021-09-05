@@ -15,7 +15,7 @@
                     <div class="thumbnail">
                         <div class="labels">
                         </div>
-                        <img src="http://internet-shop.tmweb.ru/storage/products/iphone_x.jpg" alt="iPhone X 64GB">
+                        <img src="@if($product->image_path != '/images/none_image.png'){{ Storage::url($product->image_path) }}@else {{$product->image_path}} @endif" alt="{{$product->name}}">
                         <div class="caption">
                             <h3>{{$product->name}}</h3>
                             <p>{{$product->price}} ₽</p>

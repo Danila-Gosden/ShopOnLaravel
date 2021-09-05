@@ -1,9 +1,13 @@
 <?php
 
-use App\Http\Controllers\AdminPanelController;
+use App\Http\Controllers\Admin\AdminPanelController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\StatisticController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MyOrdersController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -26,11 +30,28 @@ Auth::routes([
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => 'auth'], function (){
-    Route::get('/admin-panel', [AdminPanelController::class, 'index'])->name('admin-panel');
+Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin-panel'], function () {
+    Route::get('/', [StatisticController::class, 'index'])->name('statistic');
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+
+    Route::resource('categories', CategoryController::class);
+    Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
+
+    Route::get('/orders', [AdminPanelController::class, 'index'])->name('admin-panel.orders');
+    Route::get('/order/show/{order_id}', [AdminPanelController::class, 'showOrder'])->name('admin-panel.order.show');
+
 });
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/my-orders', [MyOrdersController::class, 'index'])->name('my-orders');
+    Route::get('/order/show/{order_id}', [MyOrdersController::class, 'showOrder'])->name('order');
+
+});
+
+Route::group(['middleware' => 'cartIsNotEmpty'], function () {
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+});
+
 
 Route::get('/cart/confirm', [CartController::class, 'cartConfirm'])->name('cart-confirm');
 

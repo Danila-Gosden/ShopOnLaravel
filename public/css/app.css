@@ -10002,3 +10002,8 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.listProductsContainer{
+    overflow-x: scroll;
+    max-height: 400px;
+    overflow-x: hidden;
+}

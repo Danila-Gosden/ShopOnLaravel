@@ -39,9 +39,10 @@
 
             <ul class="nav navbar-nav navbar-right">
                 @guest()
-                <li><a href="<?=Route('home')?>/login">Войти</a></li>
+                <li><a href="<?=Route('login')?>">Войти</a></li>
                 @endguest
                 @auth()
+                    <li><a href="<?=Route('my-orders')?>">Мои заказы</a></li>
                     <li><form action="<?=Route('logout')?>" method="POST">
                     <button type="submit" class="btn btn-primary" role="button">Выйти</button>
                     @csrf
@@ -52,10 +53,7 @@
         </div>
     </div>
 </nav>
-@if(session()->has('success'))
-    <p class="alert alert-success">{{ session()->get('success') }}</p>
-@endif
-@if(session()->has('warning'))
-    <p class="alert alert-warning">{{ session()->get('warning') }}</p>
+@if(session()->has('message'))
+    <p class="alert alert-success">{{ session()->get('message') }}</p>
 @endif
 @yield('content')
