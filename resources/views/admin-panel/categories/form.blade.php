@@ -55,7 +55,7 @@
                     </div>
                 </div>
                 <br>
-                    <img src="@if($category->image_path != '/images/none_image.png'){{ Storage::url($category->image_path) }}@else {{$category->image_path}} @endif" alt="">
+                    <img src="@isset($category) @if($category->image_path != '/images/none_image.png'){{ Storage::url($category->image_path) }}@else {{$category->image_path}} @endif @endisset" alt="">
                     <br>
 
                 <div class="input-group row">

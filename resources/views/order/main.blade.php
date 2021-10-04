@@ -11,7 +11,9 @@
                 <div>
                     <div class="container">
                         <div class="form-group">
-                            <label for="name" class="control-label col-lg-offset-3 col-lg-2">Ваше Имя</label>
+                            @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror                            <label for="name" class="control-label col-lg-offset-3 col-lg-2">Ваше Имя</label>
                             <div class="col-lg-4">
                                 <input type="text" name="name" id="name" value="" class="form-control">
                             </div>
@@ -19,6 +21,9 @@
                         <br>
                         <br>
                         <div class="form-group">
+                            @error('phone')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             <label for="phone" class="control-label col-lg-offset-3 col-lg-2">Ваш номер</label>
                             <div class="col-lg-4">
                                 <input type="text" name="phone" id="phone" value="" class="form-control">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CartRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,7 +95,7 @@ class CartController extends Controller
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function cartFinish(Request $request)
+    public function cartFinish(CartRequest $request)
     {
 
         $order_id = session('order_id');

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -25,19 +27,24 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin-panel.products.form');
+        $categories = Category::all();
+        return view('admin-panel.products.form', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        $image_path = $request->file('image')->store('products');
         $param = $request->all();
-        $param['image_path'] = $image_path;
+        unset($param['image_path']);
+        if ($request->has('image')) {
+
+            $image_path = $request->file('image')->store('products');
+            $param['image_path'] = $image_path;
+        }
         Product::create($param);
         return redirect('/admin-panel/products');
     }
@@ -45,7 +52,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      */
     public function show(Product $product)
     {
@@ -55,25 +62,29 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      */
     public function edit(Product $product)
     {
         $categories = Category::all();
-        return view('admin-panel.products.form', compact(['product','categories']));
+        return view('admin-panel.products.form', compact(['product', 'categories']));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Product $product
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        $image_path = $request->file('image')->store('products');
         $param = $request->all();
-        $param['image_path'] = $image_path;
+        unset($param['image_path']);
+        if ($request->has('image')) {
+            Storage::delete($product->image_path);
+            $image_path = $request->file('image')->store('products');
+            $param['image_path'] = $image_path;
+        }
         $product->update($param);
         return redirect('/admin-panel/products');
     }
@@ -81,7 +92,7 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
+     * @param \App\Models\Product $product
      */
     public function destroy(Product $product)
     {

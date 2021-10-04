@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminPanelController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\StatisticController;
 use App\Http\Controllers\Admin\UserController;
@@ -32,13 +32,12 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => 'isAdmin', 'prefix' => 'admin-panel'], function () {
     Route::get('/', [StatisticController::class, 'index'])->name('statistic');
-    Route::get('/users', [UserController::class, 'index'])->name('users');
-
+    Route::resource('users', UserController::class);
     Route::resource('categories', CategoryController::class);
     Route::resource('products', \App\Http\Controllers\Admin\ProductController::class);
 
-    Route::get('/orders', [AdminPanelController::class, 'index'])->name('admin-panel.orders');
-    Route::get('/order/show/{order_id}', [AdminPanelController::class, 'showOrder'])->name('admin-panel.order.show');
+    Route::get('/orders', [OrderController::class, 'index'])->name('admin-panel.orders');
+    Route::get('/order/show/{order_id}', [OrderController::class, 'showOrder'])->name('admin-panel.order.show');
 
 });
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-md-12">
-        <h1>Продукты</h1>
+        <h1>Пользователи</h1>
         <div class="listProductsContainer">
         <table class="table">
             <tbody>
@@ -11,33 +11,41 @@
                     #
                 </th>
                 <th>
-                    Код
+                    Имя
                 </th>
                 <th>
-                    Название
+                    Email
                 </th>
                 <th>
-                    Категория
+                    Номер Телефона
+                </th>
+                <th>
+                    Роль
                 </th>
                 <th>
                     Действия
                 </th>
             </tr>
-            @foreach($products as $product)
+            @foreach($users as $user)
                 <tr>
-                    <td>{{ $product->id }}</td>
-                    <td>{{ $product->code }}</td>
+                    <td>{{ $user->id }}</td>
                     <td>
-                        <a href="<?php Route('category', [$product->category->alias, $product->id]);?>">{{ $product->name }}
+                       {{ $user->name }}
                     </td>
                     <td>
-                        <a href="<?php Route('category', $product->category->alias);?>">{{ $product->category->name }}</a>
+                        {{ $user->email }}
+                    </td>
+                    <td>
+                        {{ $user->phone }}
+                    </td>
+                    <td>
+                        {{ $user->user_role }}</a>
                     </td>
                     <td>
                         <div class="btn-group" role="group">
-                            <form action="{{ route('products.destroy', $product) }}" method="POST">
-                                <a class="btn btn-success" type="button" href=" {{route('products.show', $product) }}">Открыть</a>
-                                <a class="btn btn-warning" type="button" href="{{ route('products.edit', $product) }}">Редактировать</a>
+                            <form action="{{ route('users.destroy', $user) }}" method="POST">
+                                <a class="btn btn-success" type="button" href=" {{route('users.show', $user) }}">Открыть</a>
+                                <a class="btn btn-warning" type="button" href="{{ route('users.edit', $user) }}">Редактировать</a>
                                 @csrf
                                 @method('DELETE')
                                 <input class="btn btn-danger" type="submit" value="Удалить"></form>
@@ -48,7 +56,5 @@
             </tbody>
         </table>
         </div>
-        <a class="btn btn-success" type="button"
-           href="  {{ route('products.create') }}">Добавить Продукт</a>
     </div>
 @endsection
